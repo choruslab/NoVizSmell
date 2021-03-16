@@ -1,0 +1,17 @@
+{
+	"manifest_version" : 1,
+	"name" : "NoVizSmell",
+	"version" : 1.0,
+
+	"description" : "Search for previous breaches history for a URL",
+
+	"permissions": [
+		"webRequest",
+		"<all_urls>"
+	  ],
+
+	"background" : {
+		"scripts" : ["background/breaches.js"]
+	}
+	
+}
