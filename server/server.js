@@ -5,8 +5,10 @@ const server   = http.createServer(app);
 
 const PORT     = 3000;
 
-app.get("/", (req, res) => {
-    console.log(req);
+app.use(express.json());
+
+app.post("/", (req, res) => {
+    console.log(req.body);
 });
 
 
