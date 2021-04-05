@@ -10,6 +10,8 @@
   "author": "Sebastian Navas Ch",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "@themarkup/blacklight-collector": "^2.1.11",
+    "express": "^4.17.1",
+    "haveibeenpwned": "^1.1.0"
   }
 }
