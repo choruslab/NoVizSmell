@@ -3,6 +3,11 @@ const osc    = require('osc-min');
 
 routes.post('/', messageArduino);
 
+/* This function process the received information to 
+ * determine what code to send to the Arduino
+ */
+function smellInterpreter(req, res) {}
+
 /* This function sends a message to Processing,
  * which communicates this message to Arduino
  */
@@ -13,8 +18,7 @@ function messageArduino(req, res) {
             return;
         }
     
-        // Arduino does not yet handle Domain validated certificates (which are represented by number 3)
-        if (req.body.code !== 3) {
+        if (req.body.code == 0 || req.body.code == 1) {
             // Prepare the message to send 
             let osc_msg = osc.toBuffer({
                 oscType: 'message',
@@ -27,12 +31,17 @@ function messageArduino(req, res) {
         
             // Send message to processing
             res.app.locals.udp_server.send(osc_msg, 0, osc_msg.length, 9999, req.app.locals.remote_osc_ip);
-            console.log('Sent OSC message to %s:9999', req.app.locals.remote_osc_ip);
+            console.log('Sent OSC message (%s) to %s:9999', req.body.code, req.app.locals.remote_osc_ip);
+
+            res.status(200).send("OKAY");
+            return;
 
         }
     } catch (err) {
         console.log("MESSAGE: " + err);
     }
+
+    res.status(500).send("Error");
 }
 
 module.exports = routes;

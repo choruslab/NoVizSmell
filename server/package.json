@@ -12,6 +12,7 @@
   "dependencies": {
     "@themarkup/blacklight-collector": "^2.1.11",
     "express": "^4.17.1",
-    "haveibeenpwned": "^1.1.0"
+    "haveibeenpwned": "^1.1.0",
+    "osc-min": "^1.1.2"
   }
 }

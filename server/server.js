@@ -11,15 +11,15 @@ const PORT     = 3000;
 
 app.use(express.json());
 
-app.post("/", (req, res) => {
-  console.log(req.body);
+// app.post("/", (req, res) => {
+//   console.log(req.body);
 
-  pwned.breach("edmodo", (err, data) => {
-    console.log(data);
-  });
+//   pwned.breach("edmodo", (err, data) => {
+//     console.log(data);
+//   });
 
 
-});
+// });
 
 // Look inside /routes/index.js for the code that handles requests
 app.use('/', require("./routes/index"));
