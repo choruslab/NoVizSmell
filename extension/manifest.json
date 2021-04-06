@@ -9,7 +9,13 @@
 		"webRequest",
 		"webRequestBlocking",
 		"<all_urls>"
-	  ],
+	],
+
+	"browser_action": {
+		"default_title" : "NoVizSmell",
+		"default_popup" : "popup/popup.html"
+	},
+
 
 	"background" : {
 		"scripts" : ["background/breaches.js"]

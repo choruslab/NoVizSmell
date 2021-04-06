@@ -1,7 +1,8 @@
 "use strict";
 
+var breachesForCurrentWebsite = [];
+
 async function getBreachData(details) {
-    console.log(details);
     // Format the URL sent by the extension
     let domainName = (new URL(details.url)).hostname.replace('www.','');
     // Send breach data to server (just testing XMLHttpRequest for now)
@@ -9,10 +10,11 @@ async function getBreachData(details) {
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
+                breachesForCurrentWebsite = JSON.parse(this.responseText)
                 let xhr_Server = new XMLHttpRequest();
                 xhr_Server.open("POST", "http://localhost:3000/smell");
                 xhr_Server.setRequestHeader("Content-Type", "application/json");
-                xhr_Server.send(JSON.stringify({"data":JSON.parse(this.responseText)}));
+                xhr_Server.send(JSON.stringify(breachesForCurrentWebsite));
 
             } else if (this.readyState === 4 && this.status !== 200) {
                 console.log("ERROR :(");
