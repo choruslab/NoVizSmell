@@ -9,19 +9,7 @@ routes.post('/', smellInterpreter, messageArduino);
  * determine what code to send to the Arduino
  */
 function smellInterpreter(req, res) {
-    // Format the URL sent by the extension
-    let domainName = (new URL(req.body.URL)).hostname.replace('www.','');
-    
-    // Request HIBP info from: haveibeenpwned.com
-    axios.get("https://haveibeenpwned.com/api/v3/breaches?domain=" + domainName)
-        .then( response => {
-            console.log(response.data);
-            res.status(200).send("OKAY");
-
-        })
-        .catch( error => {
-            console.log(error);
-        })
+    console.log(req.body.data);
 
 }
 
