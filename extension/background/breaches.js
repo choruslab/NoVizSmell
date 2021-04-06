@@ -33,3 +33,12 @@ browser.webRequest.onHeadersReceived.addListener(getBreachData,
 
     ["blocking"]
 );
+
+
+function displayInformation(port) {
+    port.onMessage.addListener(function(m) {
+        browser.tabs.create({url : "http://localhost:3000/displayInformation/" + m.id});          
+    });
+}
+
+browser.runtime.onConnect.addListener(displayInformation);

@@ -59,7 +59,7 @@ function getBreachesInformation(background) {
             newRow.appendChild(data);
             newRow.id = index;
 
-            newRow.addEventListener("click", event => sendDataToServer(event));
+            newRow.addEventListener("click", event => sendDataToBackgroundScript(event));
 
             body.appendChild(newRow);
         });
@@ -83,7 +83,7 @@ function getBreachesInformation(background) {
     }
 }
 
-function sendDataToServer(element) {
+function sendDataToBackgroundScript(element) {
     let id = "";
 
     // Element in the event object may not be the row (it could be one of the elements in the row).
@@ -93,8 +93,6 @@ function sendDataToServer(element) {
         id = element.target.id;
     }
 
-    let xhr_Server = new XMLHttpRequest();
-    xhr_Server.open("POST", "http://localhost:3000/displayInformation");
-    xhr_Server.setRequestHeader("Content-Type", "application/json");
-    xhr_Server.send(JSON.stringify(breachInformation[id]));
+    var port = browser.runtime.connect("background@addon");
+    port.postMessage({"id": id}); 
 }
