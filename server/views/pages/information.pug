@@ -1,0 +1,23 @@
+html(lang="en")
+    head
+        meta(charset="utf-8")
+
+        title #{Name}'s Breach Information
+        include ../partials/resources
+        
+    body
+        div(class="container-fluid")
+             div(class="row")
+                div(class="col-2"): img(src="" + LogoPath alt="" + Name + "'s " + "logo" style="width: 5rem;display:inline-block")
+
+                div(class="center-block text-center col-10"): h1(style="text-align: center;display:inline-block;padding-top: 12pt;") #{Name}
+
+        div(class="card")
+
+            div(class="cardbody")
+                ul(class="list-group list-group-flush")
+                    li(class="list-group-item"): h3 Description: !{Description}
+                    li(class="list-group-item"): h3 Data compromised: #{DataClasses} 
+                    li(class="list-group-item"): h3 Last Update: #{ModifiedDate}
+                
+        div(class="card-footer" style="text-align: right;"): caption Data from #[a(href="https://haveibeenpwned.com") haveibeenpwned.com]

@@ -9,6 +9,7 @@ routes.post('/', smellInterpreter, messageArduino);
  * determine what code to send to the Arduino
  */
 function smellInterpreter(req, res) {
+    req.app.locals.breaches = req.body;
     console.log(req.body);
 
 }
