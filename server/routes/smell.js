@@ -1,12 +1,29 @@
 const routes = require('express').Router();
 const osc    = require('osc-min');
 
-routes.post('/', messageArduino);
+const axios = require('axios').default;
+
+routes.post('/', smellInterpreter, messageArduino);
 
 /* This function process the received information to 
  * determine what code to send to the Arduino
  */
-function smellInterpreter(req, res) {}
+function smellInterpreter(req, res) {
+    // Format the URL sent by the extension
+    let domainName = (new URL(req.body.URL)).hostname.replace('www.','');
+    
+    // Request HIBP info from: haveibeenpwned.com
+    axios.get("https://haveibeenpwned.com/api/v3/breaches?domain=" + domainName)
+        .then( response => {
+            console.log(response.data);
+            res.status(200).send("OKAY");
+
+        })
+        .catch( error => {
+            console.log(error);
+        })
+
+}
 
 /* This function sends a message to Processing,
  * which communicates this message to Arduino
@@ -41,7 +58,7 @@ function messageArduino(req, res) {
         console.log("MESSAGE: " + err);
     }
 
-    res.status(500).send("Error");
+    res.status(500).send("ERROR");
 }
 
 module.exports = routes;

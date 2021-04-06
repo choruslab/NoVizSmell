@@ -11,17 +11,10 @@ const PORT     = 3000;
 
 app.use(express.json());
 
-// app.post("/", (req, res) => {
-//   console.log(req.body);
+// Get HIBP API key
+app.locals.HIBP_KEY = require("./resources/config.json").HIBP;
 
-//   pwned.breach("edmodo", (err, data) => {
-//     console.log(data);
-//   });
-
-
-// });
-
-// Look inside /routes/index.js for the code that handles requests
+// Look inside /routes/index.js for requests handling code
 app.use('/', require("./routes/index"));
 
 app.locals.udp_server = dgram.createSocket('udp4', function(msg, rinfo) {

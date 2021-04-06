@@ -1,16 +1,13 @@
 "use strict";
 
-var information = {
-    "test" : 1
-}
-
-async function getBreachData() {
+async function getBreachData(details) {
+    console.log(details);
     // Send breach data to server (just testing XMLHttpRequest for now)
     try {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:3000/");
+        xhr.open("POST", "http://localhost:3000/smell");
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(information));
+        xhr.send(JSON.stringify({URL: details.url}));
     } catch (err) {
         console.log("ERROR: " + err);
     }
