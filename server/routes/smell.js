@@ -10,7 +10,7 @@ routes.post('/', smellInterpreter, messageArduino);
  */
 function smellInterpreter(req, res) {
     req.app.locals.breaches = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
 }
 

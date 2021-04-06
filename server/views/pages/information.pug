@@ -2,7 +2,7 @@ html(lang="en")
     head
         meta(charset="utf-8")
 
-        title #{Name}'s Breach Information
+        title #{Title}'s Breach Information
         include ../partials/resources
         
     body
@@ -16,8 +16,13 @@ html(lang="en")
 
             div(class="cardbody")
                 ul(class="list-group list-group-flush")
-                    li(class="list-group-item"): h3 Description: !{Description}
-                    li(class="list-group-item"): h3 Data compromised: #{DataClasses} 
-                    li(class="list-group-item"): h3 Last Update: #{ModifiedDate}
+                    li(class="list-group-item"): h3 Description: 
+                        p !{Description}
+                    li(class="list-group-item"): h3 Data compromised: 
+                        p #{DataClasses} 
+                    li(class="list-group-item"): h3 Date when event was registered:
+                        p= new Date(AddedDate).toString()
+                    li(class="list-group-item"): h3 Last Update: 
+                        p= new Date(ModifiedDate).toString()
                 
-        div(class="card-footer" style="text-align: right;"): caption Data from #[a(href="https://haveibeenpwned.com") haveibeenpwned.com]
+        div(class="card-footer" style="text-align: right;"): caption Data obtained from #[a(href="https://haveibeenpwned.com") haveibeenpwned.com]

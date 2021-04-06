@@ -22,7 +22,7 @@ function getBreachesInformation(background) {
         let caption = document.createElement("caption");
         caption.className = "fs-6";
         caption.style.textAlign = "right";
-        caption.innerHTML = "Data from haveibeenpwned.com ".small();
+        caption.innerHTML = "Data obtained from haveibeenpwned.com ".small();
 
         // Create the headers
         let headers = document.createElement("thead");
