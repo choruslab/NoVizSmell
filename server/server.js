@@ -38,13 +38,14 @@ app.locals.udp_server = dgram.createSocket('udp4', function(msg, rinfo) {
 });
 
 /******************* Port bindings *******************/
+server.timeout = 3600
 server.listen(PORT, err=>{ 
-    if (err) {
-      console.log(err)
-    } else{
-      console.log(`=====Express Server listening on port ${PORT}======`)
-    }
-  });
+  if (err) {
+    console.log(err)
+  } else{
+    console.log(`=====Express Server listening on port ${PORT}======`)
+  }
+});
 
 app.locals.udp_server.bind(9998);
 console.log(`=====UDP Server listening on port 9998=====`);
