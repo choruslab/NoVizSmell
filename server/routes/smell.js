@@ -1,40 +1,22 @@
 const routes = require('express').Router();
 const osc    = require('osc-min');
 
-const axios = require('axios').default;
-
-routes.post('/', smellInterpreter, messageArduino);
-
-/* This function process the received information to 
- * determine what code to send to the Arduino
- */
-function smellInterpreter(req, res, next) {
-    req.app.locals.breaches = req.body.Data;
-    req.app.locals.generator = req.body.generator;
-    
-    if (req.app.locals.breaches.length > 0) {
-        req.app.locals.code = 1;
-    } else {
-        req.app.locals.code = 0;
-    }
-
-    next();
-}
+routes.post('/', messageArduino);
 
 /* This function sends a message to Processing,
  * which communicates this message to Arduino
  */
 function messageArduino(req, res) {
     try {
-
-        console.log("From: " + req.app.locals.generator + ", Code: " + req.app.locals.code);
+        
+        console.log("SEND: " + req.body.code);
 
         if(!req.app.locals.remote_osc_ip) {
             console.log("Error :(");
             return;
         }
     
-        if (req.app.locals.code == 0 || req.app.locals.code == 1) {
+        if (req.body.code == 0 || req.body.code == 1) {
             console.log("Code okay...")
             // Prepare the message to send 
             let osc_msg = osc.toBuffer({
@@ -42,7 +24,7 @@ function messageArduino(req, res) {
                 address: '/server',
                 args:[{ 
                   type: 'integer',
-                  value: parseInt(req.app.locals.code) || 0
+                  value: parseInt(req.body.code) || 0
                 }]
             });
         

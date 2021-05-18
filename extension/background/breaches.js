@@ -3,6 +3,8 @@
 var breachesForCurrentWebsite = [];
 var desiredBreach = [];
 
+//TODO: Send off code to server
+
 async function getBreachData(details) {
     // Format the URL sent by the extension
     let domainName = (new URL(details.url)).hostname.replace('www.','');
@@ -14,6 +16,19 @@ async function getBreachData(details) {
             xhr.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     breachesForCurrentWebsite = JSON.parse(this.responseText);
+                    let code = -1;
+
+                    if (breachesForCurrentWebsite.length > 0) {
+                        code = 1;
+                    } else {
+                        code = 0;
+                    }
+
+                    let xhr_Server = new XMLHttpRequest();
+                    xhr_Server.open("POST", "http://localhost:3000/smell");
+                    xhr_Server.setRequestHeader("Content-Type", "application/json");
+                    xhr_Server.send(JSON.stringify({"code": code})); 
+
                 } else if (this.readyState === 4 && this.status !== 200) {
                     console.log("ERROR :(");
                 }
@@ -43,3 +58,6 @@ function displayInformation(port) {
 }
 
 browser.runtime.onConnect.addListener(displayInformation);
+
+function smellCodeIdentifier(data) {   
+}

@@ -9,13 +9,6 @@ const PORT     = 3000;
 
 app.use(express.json());
 
-// Get HIBP API key
-app.locals.HIBP_KEY = require("./resources/config.json").HIBP;
-
-// View configuration
-app.set('view engine', 'pug');
-app.set('views', './views/pages');
-
 // Look inside /routes/index.js for requests handling code
 app.use('/', require("./routes/index"));
 
