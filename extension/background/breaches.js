@@ -1,6 +1,7 @@
 "use strict";
 
 var breachesForCurrentWebsite = [];
+var desiredBreach = [];
 
 async function getBreachData(details) {
     // Format the URL sent by the extension
@@ -12,12 +13,7 @@ async function getBreachData(details) {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
-                    breachesForCurrentWebsite = JSON.parse(this.responseText)
-                    let xhr_Server = new XMLHttpRequest();
-                    xhr_Server.open("POST", "http://localhost:3000/smell");
-                    xhr_Server.setRequestHeader("Content-Type", "application/json");
-                    xhr_Server.send(JSON.stringify({"Data": breachesForCurrentWebsite, "generator": details.url}));
-
+                    breachesForCurrentWebsite = JSON.parse(this.responseText);
                 } else if (this.readyState === 4 && this.status !== 200) {
                     console.log("ERROR :(");
                 }
@@ -40,30 +36,10 @@ browser.webRequest.onHeadersReceived.addListener(getBreachData,
 
 function displayInformation(port) {
     port.onMessage.addListener(function(m) {
-        browser.tabs.create({url : "http://localhost:3000/displayInformation/" + m.id});          
+        desiredBreach = breachesForCurrentWebsite[m.id];
+        
+        browser.tabs.create({url: "/display/tab.html"});     
     });
 }
 
 browser.runtime.onConnect.addListener(displayInformation);
-
-// var tabId;
-
-// browser.tabs.onActivated.addListener(activated)
-
-// function activated(info) {
-//     console.log(browser.tabs.query({active:true}));
-
-//     // const filter = {
-//     //     properties : ["status"],
-//     //     tabId : info.tabId
-//     // };
-
-//     // browser.tabs.onUpdated.addListener(
-//     //     updated,
-//     //     filter
-//     //     );
-// }
-
-// function updated(tabId, changeInfo, tabInfo) {
-//     console.log(changeInfo)
-// }

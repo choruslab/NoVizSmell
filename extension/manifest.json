@@ -21,7 +21,7 @@
 
 	"browser_action": {
 		"default_title" : "NoVizSmell",
-		"default_popup" : "popup/popup.html"
+		"default_popup" : "display/popup.html"
 	},
 
 
