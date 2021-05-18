@@ -21,7 +21,7 @@ public int active = 0;     // This is changed by OSC messages from the browser
 //public int input  = 2;     // This is changed by Arduino
 
 // Change this variable depending on the port being used by the Arduino
-public String port = "/dev/cu.usbmodem141401";
+public String port = "/dev/cu.usbmodem144101";
 
 void setup() 
 {
