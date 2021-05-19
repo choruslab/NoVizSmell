@@ -1,4 +1,7 @@
 # Smell Prototype
+This repository is part of a series of prototypes to explore how non-visual feedback can support users in behaving securely online. The prototype gets data about a requested website from the [Have I Been Pwned](https://haveibeenpwned.com) API and communicates the data to an Arduino Uno, which controls an olfactory device. A smell is released if the user enters a website with a previous history of data breaches. 
+
+Right now, we're exploring ways to improve olfactory feedback and other potential non-visual feedback implementations.
 
 # Documentation
 
