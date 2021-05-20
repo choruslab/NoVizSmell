@@ -11,7 +11,7 @@ Right now, we're exploring ways to improve olfactory feedback and other potentia
 [Arduino IDE](https://www.arduino.cc/en/Main/Software), [Processing IDE](https://processing.org/download/), [Firefox Browser](https://www.mozilla.org/en-CA/firefox/new/), [NodeJS](https://nodejs.org/en/) 
 
 **Hardware:**
- 1 [N-Channel MOSFET](https://www.sparkfun.com/products/10213), 1 [IRF520 Driver](https://www.amazon.ca/gp/product/B07GBY5QYV/), 1 [Cooling Fan](https://www.amazon.ca/gp/product/B07SRRWHVN/), 1 [Mist Maker](https://www.amazon.ca/gp/product/B00P8V4KIO/), 1 Arduino Uno Rev 3 or equivalent, jumper wires, alligator clips, breadboard, mason jar (or any container), and a straw
+ 1 [N-Channel MOSFET](https://www.sparkfun.com/products/10213), 1 [IRF520 Driver](https://www.amazon.ca/gp/product/B07GBY5QYV/), 1 [Cooling Fan](https://www.amazon.ca/gp/product/B07SRRWHVN/), 1 [Mist Maker](https://www.amazon.ca/gp/product/B00P8V4KIO/), 1 Arduino Uno Rev 3 or equivalent, jumper wires, breadboard, mason jar (or any container), and a straw
 
 ## To set up the repository
 Using the command line...
