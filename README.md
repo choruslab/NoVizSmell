@@ -77,3 +77,6 @@ Using the command line...
 
 # Arduino Circuit
 ![Arduino circuit](images/olfactoryPrototype.png)
+
+# Assembled Water Container
+![Assembled Water Container](images/MasonJar.png)
